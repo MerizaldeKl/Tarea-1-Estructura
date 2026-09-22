@@ -1,0 +1,299 @@
+#Ejercicio 1
+# Enunciado:
+
+# Crea una clase llamada Contador que:
+
+# Al crearse (__init__), empiece con un contador interno en 0.
+# Tenga un método incrementar() que sume 1 al contador cada vez que se llame.
+# Tenga un método obtener_valor() que devuelva el valor actual del contador.
+
+class Contador:
+    def __init__(self):
+        self.contado = 0
+
+    def incrementar(self):
+        self.contado += 1
+
+    def obtener_valor(self):
+        return self.contado
+
+c = Contador()
+c.incrementar()
+c.incrementar()
+c.incrementar()
+print(c.obtener_valor())
+# Ejercicio 2 — "La Caja de Números"
+
+# Enunciado:
+
+# Crea una clase llamada CajaNumeros que:
+
+# Al crearse (__init__), empiece con una lista vacía por dentro.
+# Tenga un método agregar(numero) que guarde ese número en la lista.
+# Tenga un método total() que devuelva la suma de todos los números guardados.
+class CajaNumeros:
+    def __init__(self):
+        self.lista = []
+    def agregar(self, numero):
+        self.lista.append(numero)
+    def total(self):
+        return sum(self.lista)
+caja = CajaNumeros()
+caja.agregar(5)
+caja.agregar(10)
+caja.agregar(3)
+print(caja.total()) 
+# 🎮 NIVEL 3 — "El Filtro de Edades"
+
+# Enunciado:
+
+# Crea una clase llamada FiltroEdades que:
+
+# Al crearse, empiece con una lista vacía por dentro.
+# Tenga un método agregar_edad(edad) que guarde esa edad en la lista.
+# Tenga un método mayores_de_edad() que devuelva una nueva lista con solo las edades que sean 18 o más.
+class FiltroEdades:
+    def __init__(self):
+        self.lista = []
+    def agregar_edad(self, edad):
+        self.lista.append(edad)
+    def mayores_de_edad(self):
+        self.nuevalista = []
+        for i in self.lista:
+            if i >= 18:
+                self.nuevalista.append(i)
+
+        return self.nuevalista
+
+f = FiltroEdades()
+f.agregar_edad(15)
+f.agregar_edad(20)
+f.agregar_edad(17)
+f.agregar_edad(30)
+print(f.mayores_de_edad()) 
+
+# 🎮 NIVEL 4 — "El Traductor Básico"
+
+# Enunciado:
+
+# Crea una clase llamada Traductor que:
+
+# Al crearse, empiece con un diccionario vacío por dentro (que guardará pares palabra en español → palabra en inglés).
+# Tenga un método agregar_traduccion(palabra_es, palabra_en) que guarde ese par en el diccionario.
+# Tenga un método traducir(palabra_es) que devuelva la traducción en inglés de esa palabra. 
+# Si la palabra no existe en el diccionario, debe devolver el texto "No encontrado".
+class Traductor:
+    def __init__(self):
+        self.diccionario = {}
+    def agregar_traduccion(self, palabra_es, palabra_en):
+        self.diccionario[palabra_es] = palabra_en
+    def traducir(self, palabra_es):
+        if palabra_es in self.diccionario:
+            return self.diccionario[palabra_es]
+        else:
+            return "No encontrado"
+t = Traductor()
+t.agregar_traduccion("hola", "hello")
+t.agregar_traduccion("gato", "cat")
+print(t.traducir("hola"))    
+print(t.traducir("perro"))
+
+# 🎮 NIVEL 5 — "El Verificador de Contraseñas"
+
+# Enunciado:
+
+# Crea una clase llamada VerificadorContraseñas que:
+
+# Tenga un método es_valida(contraseña) que devuelva True si la contraseña tiene 8 caracteres o más, y False si no.
+# Tenga un método verificar_multiples(*contraseñas) que reciba varias contraseñas y devuelva un diccionario {contraseña: True/False}, 
+# reutilizando es_valida para cada una (no reescribas la lógica de validar adentro de este método).
+class VerificadorContraseñas:
+    def es_valida(self, contraseña):
+        if len(contraseña) >= 8:
+            return True
+        else:
+            return False
+    def verificar_multiples(self, *contraseña):
+        mi_diccionario = {}
+        for i in contraseña:
+            mi_diccionario[i] = self.es_valida(i)
+
+        return mi_diccionario
+v = VerificadorContraseñas()
+print(v.verificar_multiples("1234", "miclaveSegura123", "abc"))
+
+Ejercicio 6 — Termómetro (patrón: contador simple)
+
+Enunciado: Crea una clase Termometro que inicie en 0 grados, tenga un método subir_grado() que sume 1 grado cada vez que se llame,
+ y un método grados_actuales() que devuelva el valor actual.
+class Termometro:
+    def __init__(self):
+        self.grados = 0
+    def subir_grado(self):
+        self.grados += 1
+    def grados_actuales(self):
+        return self.grados
+Ejercicio 7 — CajaAhorros (patrón: lista + suma)
+
+Enunciado: Crea una clase CajaAhorros que guarde una lista de depósitos con depositar(monto), y tenga un método saldo_total() que devuelva la suma de todos los depósitos.
+class CajaAhorros:
+    def __init__(self):
+        self.depositos = []
+    def depositar(self, monto):
+        self.depositos.append(monto)
+    def saldo_total(self):
+        return sum(self.depositos)
+Ejercicio 8 — FiltroNotas (patrón: lista + filtro)
+
+Enunciado: Crea una clase FiltroNotas que guarde notas con agregar_nota(nota), y tenga un método notas_aprobadas() que devuelva una lista solo con las notas mayores o iguales a 60.
+class FiltroNotas:
+    def __init__(self):
+        self.notas = []
+    def agregar_nota(self, nota):
+        self.notas.append(nota)
+    def notas_aprobadas(self):
+        resultado = []
+        for nota in self.notas:
+            if nota >= 60:
+                resultado.append(nota)
+        return resultado
+Ejercicio 9 — PaisCapital (patrón: diccionario)
+
+Enunciado: Crea una clase PaisCapital que guarde pares país→capital con agregar_capital(pais, capital), y tenga un método obtener_capital(pais) que devuelva la capital, o "No encontrado" si el país no existe.
+class PaisCapital:
+    def __init__(self):
+        self.capitales = {}
+    def agregar_capital(self, pais, capital):
+        self.capitales[pais] = capital
+    def obtener_capital(self, pais):
+        if pais in self.capitales:
+            return self.capitales[pais]
+        else:
+            return "No encontrado"
+Ejercicio 10 — ValidadorEmails (patrón: *args + reutilizar método)
+
+Enunciado: Crea una clase ValidadorEmails con un método es_valido(email) que devuelva True si el texto contiene "@", y un método validar_multiples(*emails) que reutilice es_valido para devolver un diccionario {email: True/False}.
+class ValidadorEmails:
+    def es_valido(self, email):
+        return "@" in email
+    def validar_multiples(self, *emails):
+        resultado = {}
+        for email in emails:
+            resultado[email] = self.es_valido(email)
+        return resultado
+Ejercicio 11 — Marcador (patrón: contador simple)
+
+Enunciado: Crea una clase Marcador que inicie en 0 goles, con un método anotar_gol() que sume 1 cada vez que se llame, y un método goles_totales() que devuelva el total.
+class Marcador:
+    def __init__(self):
+        self.goles = 0
+    def anotar_gol(self):
+        self.goles += 1
+    def goles_totales(self):
+        return self.goles
+Ejercicio 12 — ListaCompras (patrón: lista + suma)
+
+Enunciado: Crea una clase ListaCompras que guarde precios con agregar_producto(precio), y tenga un método total_compra() que devuelva la suma de todos los precios agregados.
+class ListaCompras:
+    def __init__(self):
+        self.precios = []
+    def agregar_producto(self, precio):
+        self.precios.append(precio)
+    def total_compra(self):
+        return sum(self.precios)
+Ejercicio 13 — FiltroTemperaturas (patrón: lista + filtro)
+
+Enunciado: Crea una clase FiltroTemperaturas que guarde temperaturas con agregar_temperatura(temp), y tenga un método temperaturas_altas() que devuelva una lista solo con las temperaturas mayores o iguales a 30.
+class FiltroTemperaturas:
+    def __init__(self):
+        self.temperaturas = []
+    def agregar_temperatura(self, temp):
+        self.temperaturas.append(temp)
+    def temperaturas_altas(self):
+        resultado = []
+        for temp in self.temperaturas:
+            if temp >= 30:
+                resultado.append(temp)
+        return resultado
+Ejercicio 14 — AgendaTelefonica (patrón: diccionario)
+
+Enunciado: Crea una clase AgendaTelefonica que guarde pares nombre→número con agregar_contacto(nombre, numero), y tenga un método buscar_contacto(nombre) que devuelva el número, o "No encontrado" si el nombre no existe.
+class AgendaTelefonica:
+    def __init__(self):
+        self.contactos = {}
+    def agregar_contacto(self, nombre, numero):
+        self.contactos[nombre] = numero
+    def buscar_contacto(self, nombre):
+        if nombre in self.contactos:
+            return self.contactos[nombre]
+        else:
+            return "No encontrado"
+Ejercicio 15 — VerificadorPares (patrón: *args + reutilizar método)
+
+Enunciado: Crea una clase VerificadorPares con un método es_par(numero) que devuelva True si el número es par, y un método verificar_multiples(*numeros) que reutilice es_par para devolver un diccionario {numero: True/False}.
+class VerificadorPares:
+    def es_par(self, numero):
+        return numero % 2 == 0
+    def verificar_multiples(self, *numeros):
+        resultado = {}
+        for numero in numeros:
+            resultado[numero] = self.es_par(numero)
+        return resultado
+Ejercicio 16 — Odometro (patrón: contador simple)
+
+Enunciado: Crea una clase Odometro que inicie en 0 kilómetros, con un método avanzar_km(km) que sume la cantidad indicada, y un método leer_kilometros() que devuelva el total acumulado.
+class Odometro:
+    def __init__(self):
+        self.kilometros = 0
+    def avanzar_km(self, km):
+        self.kilometros += km
+    def leer_kilometros(self):
+        return self.kilometros
+Ejercicio 17 — RegistroGastos (patrón: lista + suma)
+
+Enunciado: Crea una clase RegistroGastos que guarde montos con agregar_gasto(monto), y tenga un método gasto_total() que devuelva la suma de todos los gastos.
+class RegistroGastos:
+    def __init__(self):
+        self.gastos = []
+    def agregar_gasto(self, monto):
+        self.gastos.append(monto)
+    def gasto_total(self):
+        return sum(self.gastos)
+Ejercicio 18 — FiltroPalabras (patrón: lista + filtro)
+
+Enunciado: Crea una clase FiltroPalabras que guarde palabras con agregar_palabra(palabra), y tenga un método palabras_largas() que devuelva una lista solo con las palabras de más de 5 letras.
+class FiltroPalabras:
+    def __init__(self):
+        self.palabras = []
+    def agregar_palabra(self, palabra):
+        self.palabras.append(palabra)
+    def palabras_largas(self):
+        resultado = []
+        for palabra in self.palabras:
+            if len(palabra) > 5:
+                resultado.append(palabra)
+        return resultado
+Ejercicio 19 — InventarioPrecios (patrón: diccionario)
+
+Enunciado: Crea una clase InventarioPrecios que guarde pares producto→precio con agregar_precio(producto, precio), y tenga un método consultar_precio(producto) que devuelva el precio, o "No encontrado" si el producto no existe.
+class InventarioPrecios:
+    def __init__(self):
+        self.precios = {}
+    def agregar_precio(self, producto, precio):
+        self.precios[producto] = precio
+    def consultar_precio(self, producto):
+        if producto in self.precios:
+            return self.precios[producto]
+        else:
+            return "No encontrado"
+Ejercicio 20 — VerificadorMayusculas (patrón: *args + reutilizar método)
+
+Enunciado: Crea una clase VerificadorMayusculas con un método tiene_mayuscula(texto) que devuelva True si el texto tiene al menos una letra mayúscula, y un método verificar_multiples(*textos) que reutilice tiene_mayuscula para devolver un diccionario {texto: True/False}.
+class VerificadorMayusculas:
+    def tiene_mayuscula(self, texto):
+        return texto != texto.lower()
+    def verificar_multiples(self, *textos):
+        resultado = {}
+        for texto in textos:
+            resultado[texto] = self.tiene_mayuscula(texto)
+        return resultado
